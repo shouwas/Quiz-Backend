@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace Quiz_Backend
 {
@@ -32,6 +33,8 @@ namespace Quiz_Backend
                 .AllowAnyMethod()
                 .AllowAnyHeader();
             }));
+
+            services.AddDbContext<QuizContext>(opt => opt.UseInMemoryDatabase("Quiz"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
